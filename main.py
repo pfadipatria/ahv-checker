@@ -87,7 +87,7 @@ for person_id, group_id in tqdm(
 ):
     people.append(get_people_details(person_id, group_id))
 
-people.sort(key=lambda p: p["last_name"])
+people.sort(key=lambda p: p["last_name"] + p["first_name"])
 
 ahv_regex = re.compile("\d{3}.\d{4}.\d{4}.\d{2}")
 
@@ -101,8 +101,6 @@ print(f"Mit AHV-Nr: {len(people) - len(people_without_ahv)}")
 print(f"Ohne AHV-Nr: {len(people_without_ahv)}")
 print(f"Total: {len(people)}")
 print()
-
-exit(0)
 
 for p in people_without_ahv:
     f_name = name_formatter(p["nickname"], p["first_name"], p["last_name"])
