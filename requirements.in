@@ -1,0 +1,5 @@
+requests
+python-dotenv
+tqdm
+beautifulsoup4
+black
