@@ -87,7 +87,7 @@ for person_id, group_id in tqdm(
 ):
     people.append(get_people_details(person_id, group_id))
 
-people.sort(key=lambda p: p["last_name"] + p["first_name"])
+people.sort(key=lambda p: p["last_name"].replace("von ","") + p["first_name"])
 
 ahv_regex = re.compile("\d{3}.\d{4}.\d{4}.\d{2}")
 
