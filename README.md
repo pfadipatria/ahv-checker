@@ -12,12 +12,12 @@ Wenn du nicht in der Command Line zu Hause bist helfen wir dir gerne: <wombat@pf
 ## Installation
 
 
-
 ```bash
 git clone git@github.com:pfadipatria/ahv-checker.git
 cd ahv-checker
 python3 -m venv venv/
 source venv/bin/activate
+pip install -r requirements.txt
 ```
     
 ## Environment Variables
