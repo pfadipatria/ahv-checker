@@ -10,11 +10,11 @@ load_dotenv()
 
 api_key = os.getenv("API_KEY")
 group = os.getenv("GROUP")
-attribute_to_check = os.getenv("ATTRIBUTE_TO_CHECK")
 username = os.getenv("USERNAME")
 password = os.getenv("PASSWORD")
 
 BASE_URL = "https://db.scout.ch"
+ATTRIBUTE_TO_CHECK = "ahv_number"
 
 s = requests.Session()
 
@@ -87,14 +87,14 @@ for person_id, group_id in tqdm(
 ):
     people.append(get_people_details(person_id, group_id))
 
-people.sort(key=lambda p: p["last_name"].replace("von ","") + p["first_name"])
+people.sort(key=lambda p: p["last_name"].replace("von ", "") + p["first_name"])
 
 ahv_regex = re.compile("\d{3}.\d{4}.\d{4}.\d{2}")
 
 people_without_ahv = [
     person
     for person in people
-    if not (person[attribute_to_check] and ahv_regex.match(person[attribute_to_check]))
+    if not (person[ATTRIBUTE_TO_CHECK] and ahv_regex.match(person[ATTRIBUTE_TO_CHECK]))
 ]
 
 print(f"Mit AHV-Nr: {len(people) - len(people_without_ahv)}")
