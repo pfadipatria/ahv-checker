@@ -2,6 +2,7 @@ import os
 import re
 
 import requests
+from art import tprint
 from dotenv import load_dotenv
 from tqdm import tqdm
 from bs4 import BeautifulSoup
@@ -57,6 +58,7 @@ def name_formatter(nickname, firstname, lastname):
         return f"{nickname} / {firstname} {lastname}"
     return f"{firstname} {lastname}"
 
+tprint("AHV-Checker")
 
 # Login procedure
 login_page = s.get("https://db.scout.ch/de/users/sign_in")
@@ -79,7 +81,7 @@ people_ids = []
 for group in tqdm(groups, desc=f"Fetching all people ids", unit="group"):
     people_ids.extend([(group, p_id) for p_id in get_people_id_from_group(group)])
 
-people_ids = list(set(people_ids))  # Ensure unique
+people_ids = list(set(people_ids))  # Ensure only unique
 
 people = []
 for person_id, group_id in tqdm(
